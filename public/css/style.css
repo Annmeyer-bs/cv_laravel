@@ -143,6 +143,7 @@ section h3,.conteiner h3{
     align-items: center;
     padding: 64px 21px;
     max-width: 438px;
+    margin: auto;
 }
 /*------edit---------*/
 .wrapper form{
@@ -225,7 +226,7 @@ input{
     font-weight: bold;
     font-size: 30px;
     text-align: center;
-    width: 276px;
+    width: 290px;
     height: 37px;
     color: #000000;
 }

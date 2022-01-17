@@ -13,21 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 Route::get('/', 'App\Http\Controllers\MainController@getMain')->name('main');
 
-
 Route::middleware("auth")->group(function () {
-    Route::get('/logout', 'App\Http\Controllers\AuthController@getLogout')->name('logout');
+    Route::get('/edit', 'App\Http\Controllers\EditController@showEdit')->name('edit');
+    Route::post('/edit-act', 'App\Http\Controllers\ProfileController@update')->name('edit-act');
+    Route::get('/logout', 'App\Http\Controllers\AuthController@showLogOut')->name('logout');
 });
 Route::middleware("guest")->group(function () {
-    Route::get('/login', 'App\Http\Controllers\AuthController@getLogin')->name('login');
-    Route::post('/login-act', 'App\Http\Controllers\AuthController@postLogin')->name('login-act');
+    Route::get('/login', 'App\Http\Controllers\AuthController@showLogIn')->name('login');
+    Route::post('/login-act', 'App\Http\Controllers\AuthController@logIn')->name('login-act');
 
-    Route::get('/register', 'App\Http\Controllers\AuthController@getRegister')->name('register');
-    Route::post('/register-act', 'App\Http\Controllers\AuthController@postRegister')->name('register-act');
+    Route::get('/registration', 'App\Http\Controllers\AuthController@showRegistration')->name('registration');
+    Route::post('/registration-act', 'App\Http\Controllers\AuthController@registration')->name('registration-act');
 
 });
 

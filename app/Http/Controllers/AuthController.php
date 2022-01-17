@@ -7,23 +7,23 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function getLogin()
+    public function showLogIn()
     {
         return view('auth.login');
     }
 
-    public function getLogout()
+    public function showLogOut()
     {
         auth("web")->logout();
         return redirect(route("login"));
     }
 
-    public function getRegister()
+    public function showRegistration()
     {
         return view('auth.register');
     }
 
-    public function postRegister(Request $request)
+    public function registration(Request $request)
     {
         $data = $request->validate([
             "email" => ["required", "unique:users,email"],
@@ -41,17 +41,17 @@ class AuthController extends Controller
         return redirect(route("main"));
     }
 
-    public function postLogin(Request $request)
+    public function logIn(Request $request)
     {
         $data = $request->validate([
             "login" => ["required"],
             "password" => ["required"]
         ]);
 
-        if(auth("web")->attempt($data)){
-          return redirect(route("main"));
+        if (auth("web")->attempt($data)) {
+            return redirect(route("main"));
         }
 
-        return redirect(route("login"))->withErrors(["email"=>"User not find, or ..."]);
+        return redirect(route("login"))->withErrors(["email" => "User not find, or ..."]);
     }
 }
